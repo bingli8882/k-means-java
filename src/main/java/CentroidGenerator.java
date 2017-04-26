@@ -8,5 +8,5 @@ public interface CentroidGenerator {
      * @param data The data set containing all data points.
      * @return A list of all generated centroids.
      */
-    double[][] generate(final int k, final double[][] data) throws EmptyDataSetException;
+    double[][] generate(final int k, final double[][] data) throws EmptyDataSetException, NullPointerException;
 }

@@ -13,6 +13,11 @@ public class RandomCentroidGeneratorTest {
     double[][] a = {{0,1,2},{1,2,3},{2,3,4},{3,4,5},{4,5,6}};
     CentroidGenerator cg = new RandomCentroidGenerator();
 
+    @Test(expected = NullPointerException.class)
+    public void testNullPointer() throws EmptyDataSetException, NullPointerException{
+        cg.generate(0,null);
+    }
+
     @Test(expected = EmptyDataSetException.class)
     public void testEmptyInput() throws EmptyDataSetException{
         cg.generate(10,new double[3][4]);
