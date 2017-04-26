@@ -13,8 +13,8 @@ public class StanderdMeanFunctionTest {
         m.compute(new double[0][0]);
     }
 
-    @Test(expected = EmptyDataSetException.class)
-    public void nullPointerTest() throws EmptyDataSetException {
+    @Test(expected = NullPointerException.class)
+    public void nullPointerTest() throws EmptyDataSetException, NullPointerException{
         m.compute(null);
     }
 
