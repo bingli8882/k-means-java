@@ -5,6 +5,16 @@ import org.junit.Test;
  * Created by bing on 4/20/17.
  */
 public class EuclideanTest {
+    @Test(expected = NullPointerException.class)
+    public void nullPointerTest1() throws NullPointerException,LengthUnmatchedException{
+        DistanceFunction d = new Euclidean();
+        d.compute(null,new double[10]);
+    }
+    @Test(expected = NullPointerException.class)
+    public void nullPointerTest2() throws LengthUnmatchedException,NullPointerException{
+        DistanceFunction d = new Euclidean();
+        d.compute(new double[4],null);
+    }
     @Test
     public void evaluatesExpression() throws LengthUnmatchedException {
         DistanceFunction d = new Euclidean();

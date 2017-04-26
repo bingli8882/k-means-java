@@ -8,5 +8,5 @@ public interface DistanceFunction {
      * @param b A double array representing the other point's coordinate.
      * @return A double value representing the distance between two given points.
      */
-    double compute(final double[] a, final double[] b) throws LengthUnmatchedException;
+    double compute(final double[] a, final double[] b) throws LengthUnmatchedException,NullPointerException;
 }
