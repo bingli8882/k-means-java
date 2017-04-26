@@ -5,7 +5,7 @@ import java.util.List;
  * Random generate centroids
  */
 public class RandomCentroidGenerator implements CentroidGenerator {
-    public double[][] generate(int k, double[][] data) throws EmptyDataSetException {
+    public double[][] generate(final int k, final double[][] data) throws EmptyDataSetException {
         if (data.length == 0 || data[0].length == 0) throw new EmptyDataSetException("The input data set is empty.");
         if (data.length < k) throw new EmptyDataSetException("The input data set size is less than K.");
 
