@@ -21,4 +21,25 @@ public class DataGeneratorTest {
             }
         }
     }
+
+    @Test(expected = EmptyDataSetException.class)
+    public void generateDataTest1() throws EmptyDataSetException{
+        DataGenerator.generateData(1,null,10);
+
+    }
+
+    @Test
+    public void generateDataTest2() throws EmptyDataSetException {
+        double[][] data = DataGenerator.generateData(10,DataGenerator.generateCentroids(2),10);
+
+        assertEquals(10,data.length);
+        assertEquals(2,data[0].length);
+
+        for (double[] d: data) {
+            for (double e:d) {
+                assertTrue(e<=100);
+                assertTrue(e>=0);
+            }
+        }
+    }
 }
