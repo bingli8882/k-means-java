@@ -25,7 +25,7 @@ public class KMeans {
         this.mf = mf;
         this.cg = cg;
         try {
-            centroids = cg.generate(k,data);
+            this.generateCentroids();
         } catch (EmptyDataSetException e) {
             e.printStackTrace();
             System.exit(1);
@@ -74,6 +74,14 @@ public class KMeans {
      */
     public void setCentroidGenerator(CentroidGenerator cg){
         this.cg = cg;
+    }
+
+    /**
+     * Generate new centroids
+     * @throws EmptyDataSetException if the input data set is empty
+     */
+    public void generateCentroids() throws EmptyDataSetException {
+        this.centroids = cg.generate(this.k,this.data);
     }
 
 }
