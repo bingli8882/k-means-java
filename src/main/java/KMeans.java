@@ -52,4 +52,28 @@ public class KMeans {
         this(k,data,new Euclidean(), new RandomCentroidGenerator());
     }
 
+    /**
+     * Change distance function
+     * @param df the distance function
+     */
+    public void setDistanceFunction(DistanceFunction df){
+        this.df = df;
+    }
+
+    /**
+     * Change mean function
+     * @param mf the mean function
+     */
+    public void setMeanFunction(MeanFunction mf){
+        this.mf = mf;
+    }
+
+    /**
+     * Change centroid generator function
+     * @param cg the centroid generator function
+     */
+    public void setCentroidGenerator(CentroidGenerator cg){
+        this.cg = cg;
+    }
+
 }
