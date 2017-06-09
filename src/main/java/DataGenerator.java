@@ -41,13 +41,13 @@ public class DataGenerator {
     }
 
     /**
-     * Random generate test centroids, 2d, 10~90
+     * Random generate test centroids, 2d, 1~9
      *
      * @param n the amount of centroids
      * @return a 2d double array represents the list of the centroids
      */
     public static double[][] generateCentroids(int n) {
-        return generateCentroids(n, 2, 10, 90);
+        return generateCentroids(n, 2, 1, 9);
     }
 
     /**
@@ -86,29 +86,37 @@ public class DataGenerator {
      * @throws EmptyDataSetException if input the centroid array is empty
      */
     public static double[][] generateData(int size, double[][] centroids) throws EmptyDataSetException {
-        return generateData(size, centroids, 10);
+        return generateData(size, centroids, 1);
     }
 
     /**
      * Output a data set to the specified file
+     *
      * @param data the data set
-     * @param out the output file
+     * @param out  the output file
      * @throws IOException if any error caught when write data
      */
-    private static void output(double[][] data,FileWriter out) throws IOException {
-        if(data.length==0) return;
-        for (int i = 0; i < data[0].length; i++) {
-            out.write(data[0][i]+" ");
-        }
-        out.write("\n");
+    private static void output(double[][] data, FileWriter out) throws IOException {
+        if (data.length == 0) return;
+        out.write(output(data));
 
-        for (int i = 1; i < data.length; i++) {
-            for (int j = 0; j < data[0].length; j++) {
-                out.write(data[i][j]+" ");
+    }
+
+    /**
+     * Convert a 2d double array to a string
+     * @param array the input 2d double array
+     * @return a string object represents the output
+     */
+    public static String output(double[][] array) {
+        if (array.length == 0) return"";
+        String r = "";
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[0].length; j++) {
+                r+=array[i][j] + " ";
             }
-            out.write("\n");
+            r+="\n";
         }
-
+        return r.substring(0,r.length()-1);
     }
 
     /**
@@ -130,11 +138,11 @@ public class DataGenerator {
 
         try {
             FileWriter out = new FileWriter(args[2]);
-            output(data,out);
+            output(data, out);
             out.close();
 
-            out = new FileWriter(args[2]+"_centroids");
-            output(centroids,out);
+            out = new FileWriter(args[2] + "_centroids");
+            output(centroids, out);
             out.close();
 
         } catch (Exception e) {
