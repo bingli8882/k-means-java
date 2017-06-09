@@ -1,3 +1,4 @@
+
 /**
  * Created by bing on 4/20/17.
  */
@@ -103,13 +104,34 @@ public class KMeans {
     /**
      * Training function
      */
-    public void train() {
-        double[] marker = new double[data.length];
+    public void train(int it) throws LengthUnmatchedException {
+        int time = 0;
+        while (time < it) {
+            int[] counter = new int[centroids.length];
+            double[][] total = new double[centroids.length][centroids[0].length];
+
+            int t;
+            for (int i = 0; i < data.length; i++) {
+                t = findCentroid(data[i]);
+                counter[t]++;
+                for (int j = 0; j < data[i].length; j++) {
+                    total[t][j] += data[i][j];
+                }
+            }
+
+            for (int i = 0; i < centroids.length; i++) {
+                for (int j = 0; j < centroids[0].length; j++) {
+                    centroids[i][j] = total[i][j] / counter[i];
+                }
+            }
+            time++;
+        }
 
     }
 
     /**
      * find the nearest centroid of the specified point
+     *
      * @param d a data point
      * @return the index of target centroid
      * @throws LengthUnmatchedException
@@ -125,9 +147,28 @@ public class KMeans {
                 index = i;
                 dis = t;
             }
+
         }
 
         return index;
     }
+
+    public static void main(String[] args) throws Exception {
+
+        double[][] centroids = DataGenerator.generateCentroids(3,2000,1,9);
+        double[][] data = DataGenerator.generateData(Integer.parseInt(args[0]),centroids);
+
+        KMeans km = new KMeans(3,data);
+        long tb = System.currentTimeMillis();
+        km.train(1);
+        long ta = System.currentTimeMillis();
+
+        System.out.println((ta-tb)/1000.0);
+//        System.out.println("c1");
+//        System.out.println(DataGenerator.output(centroids));
+//        System.out.println("c2");
+//        System.out.println(DataGenerator.output(km.getCentroids()));
+    }
+
 
 }
